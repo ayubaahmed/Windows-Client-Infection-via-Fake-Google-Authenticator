@@ -48,10 +48,10 @@ DHCP_Client_Identification_Details.png
 - Filtered Kerberos traffic, looking specifically at AS-REP packets to identify the user account (`shutcherson`). 
 
 Screenshot: 
-NBNS_Hostname_and_Domain_Registrations.png
-Kerberos_Authentication_Traffic_Overview.png
-Kerberos_Authentication_User_shutcherson.png
-Network_Client_Discovery_DNS_Kerberos_Overview.png
+- NBNS_Hostname_and_Domain_Registrations.png
+- Kerberos_Authentication_Traffic_Overview.png
+- Kerberos_Authentication_User_shutcherson.png
+- Network_Client_Discovery_DNS_Kerberos_Overview.png
 
 3. DNS Query to Fake Site
 - Applied HTTP and DNS filters with keywords like "google" and "auth" to narrow down relevant traffic.
@@ -60,9 +60,9 @@ Network_Client_Discovery_DNS_Kerberos_Overview.png
 - Established that visiting this site was the initial infection vector.
 
 Screenshot: 
-DNS_Queries_FakeAuth_and_C2_Resolution.png
-DNS_Query_Fake_GoogleAuthenticator_Details.png
-Filtered_DNS_GoogleAuth_Query_View.png
+- DNS_Queries_FakeAuth_and_C2_Resolution.png
+- DNS_Query_Fake_GoogleAuthenticator_Details.png
+- Filtered_DNS_GoogleAuth_Query_View.png
 
 4. HTTP Connection to C2 Server
 - Filtered HTTP traffic in Wireshark to focus on web requests from the infected computer.  
@@ -71,10 +71,10 @@ Filtered_DNS_GoogleAuth_Query_View.png
 - The server’s response included a failed attempt with a 404 error.
 
 Screenshot: 
-C2_HTTP_Requests_Overview_5.252.153.241.png
-C2_HTTP_Traffic_Summary_5.252.153.241.png
-C2_Payload_Request_PowerShell_Script.png
-C2_Payload_Download_Attempt_404_Response.png
+- C2_HTTP_Requests_Overview_5.252.153.241.png
+- C2_HTTP_Traffic_Summary_5.252.153.241.png
+- C2_Payload_Request_PowerShell_Script.png
+- C2_Payload_Download_Attempt_404_Response.png
 
 5. Network Conversation Analysis
 - Filtered all traffic involving the infected computer’s IP address.
@@ -83,16 +83,16 @@ C2_Payload_Download_Attempt_404_Response.png
 - Noticed the traffic was using port 2917, which isn’t a standard port.
   
 Screenshot: 
-Network_Conversation_IPv4_Summary.png
-IP_Suspicious_Port.png
+- Network_Conversation_IPv4_Summary.png
+- IP_Suspicious_Port.png
 
 6. Communication to Suspicious IPs
 - Checked the reputation of these IP addresses on VirusTotal and similar services.
 - Found that the IPs were flagged as suspicious or malicious by multiple security sources.
-- 
+
 Screenshot:
-IP_Reputation_45.125.66.32_Detection_Summary.png
-IP_Reputation_45.125.66.32_Malicious_Flags.png
+- IP_Reputation_45.125.66.32_Detection_Summary.png
+- IP_Reputation_45.125.66.32_Malicious_Flags.png
 
 Key Findings
 
