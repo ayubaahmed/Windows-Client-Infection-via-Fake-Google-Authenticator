@@ -39,9 +39,9 @@ Each step below shows how I discovered what happened, along with the matching sc
 - Filtered HTTP traffic for that IP (10.1.17.215) to see what kind of communication it was doing.
 
 Screenshot: 
-HTTP_Traffic.png
-DHCP_Handshake_Process.png
-DHCP_Client_Identification_Details.png
+- HTTP_Traffic.png
+- DHCP_Handshake_Process.png
+- DHCP_Client_Identification_Details.png
 
 2. Identifying Hostname and User
 - Filtered NBNS traffic to find the computer’s hostname and domain registrations.  
