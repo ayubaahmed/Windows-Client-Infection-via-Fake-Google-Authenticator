@@ -105,9 +105,9 @@ Key Findings
 
 **Recommendations**
 
-Isolate and reinstall the infected computer.
-Block the bad website and IP addresses on the network.
-Change the password for the user shutcherson.
-Check all devices and accounts for signs of spread.
-Train users to recognize and avoid phishing and malicious ads.
+- Isolate and reinstall the infected computer.
+- Block the bad website and IP addresses on the network.
+- Change the password for the user shutcherson.
+- Check all devices and accounts for signs of spread.
+- Train users to recognize and avoid phishing and malicious ads.
 
