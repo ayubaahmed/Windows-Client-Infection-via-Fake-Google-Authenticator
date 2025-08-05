@@ -25,9 +25,9 @@ Malicious Sites/C2 IP Addresses
 These are the known malicious or suspicious sites/IP addresses involved:
 google-authenticator.burleson-appliance.net – Fake website pretending to be Google Authenticator.
 5.252.153.241 – Server contacted to download a PowerShell script (confirmed malicious).
-45.125.66.32 – Suspicious server with encrypted traffic on an unusual port (2917).
-45.125.66.252 – Another suspicious server in the same network range.
-“Due to limited evidence, these last two IP addresses are currently classed as suspicious and warrant further monitoring.”
+45.125.66.32 – Suspicious server with traffic on an unusual port (2917).
+45.125.66.252 – suspicious server in the same network range.
+“Due to limited evidence, these last two IP addresses are classed as suspicious and need further monitoring.”
 
 
 Investigation Steps and Visual Evidence
