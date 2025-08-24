@@ -58,7 +58,6 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - HTTP_Traffic.png  
 - DHCP_Handshake_Process.png  
 - DHCP_Client_Identification_Details.png
-- ./Images/HTTP_Traffic.png  
 
 ---
 
@@ -98,7 +97,7 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - C2_HTTP_Traffic_Summary_5.252.153.241.png  
 - C2_Payload_Request_PowerShell_Script.png  
 - C2_Payload_Download_Attempt_404_Response.png
-- ![Secrets](./C2_Payload_Download_Attempt_404_Response.png)
+- ![Secrets](./Images/C2_Payload_Download_Attempt_404_Response.png)
 
 ---
 
