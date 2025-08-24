@@ -57,7 +57,9 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 **Screenshots:**  
 ![HTTP Traffic](./Images/HTTP_Traffic.png)  
 ![DHCP Handshake Process](./Images/DHCP_Handshake_Process.png)  
-![DHCP Client Identification Details](./Images/DHCP_Client_Identification_Details.png)  
+![DHCP Client Identification Details](./Images/DHCP_Client_Identification_Details.png) 
+![Initial Compromise](./Images/Initial_Compromise.png)
+
 
 
 ---
@@ -97,7 +99,10 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 ![C2 HTTP Requests Overview](./Images/C2_HTTP_Requests_Overview_5.252.153.241.png)  
 ![C2 HTTP Traffic Summary](./Images/C2_HTTP_Traffic_Summary_5.252.153.241.png)  
 ![C2 Payload Request PowerShell Script](./Images/C2_Payload_Request_PowerShell_Script.png)  
-![C2 Payload Download Attempt 404 Response](./Images/C2_Payload_Download_Attempt_404_Response.png)  
+![C2 Payload Download Attempt 404 Response](./Images/C2_Payload_Download_Attempt_404_Response.png)
+![HTTP Requests to the C2 Server](./Images/HTTP_Requests_to_the_C2_Server.png)  
+![Failed HTTP Requests Over Time](./Images/Failed_HTTP_Requests_Over_Time.png)
+
 
 ---
 
@@ -108,7 +113,9 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 
 **Screenshots:**  
 ![Network Conversation IPv4 Summary](./Images/Network_Conversation_IPv4_Summary.png)  
-![IP Suspicious Port](./Images/IP_Suspicious_Port.png)  
+![IP Suspicious Port](./Images/IP_Suspicious_Port.png)
+![Infected Host C2 Communication Timeline](./Images/Infected_Host_C2_Communication_Timeline.png)
+
 
 ---
 
@@ -120,6 +127,8 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 **Screenshots:**  
 ![IP Reputation 45.125.66.32 Detection Summary](./Images/IP_Reputation_45.125.66.32_Detection_Summary.png)  
 ![IP Reputation 45.125.66.32 Malicious Flags](./Images/IP_Reputation_45.125.66.32_Malicious_Flags.png)  
+![Hosts Downloading PowerShell or Script Files](./Images/Hosts_Downloading_PowerShell_or_Script_Files.png)
+
 
 ---
 
