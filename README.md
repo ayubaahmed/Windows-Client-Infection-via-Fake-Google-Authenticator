@@ -1,4 +1,6 @@
-Incident Report: Fake Google Authenticator Malware Infection
+# Incident Report: Fake Google Authenticator Malware Infection
+
+---
 
 PCAP Source
 
@@ -11,14 +13,17 @@ Summary
 
 On 22-01-2025, a windows computer was infected by malware, the infection happened after the user searched for "Google Authenticator" and visted a website that was pretending to be legitmate. I retrieved the network traffic and analysed it, coming to a conlusion that the website delivered a malware using an HTTP C2 Sever at 5.252.153.241. This report will detail how the infection was identified, the suspicious activities observed and provide recommendations to contain and remediate the threat. 
 
+---
 
 Affected Computer Details
 
-IP Address: 10.1.17.215
-MAC Address: 00:d0:b7:26:4a:74
+- IP Address: 10.1.17.215
+- MAC Address: 00:d0:b7:26:4a:74
 Hostname: DESKTOP-L8C5G5J
 Domain: BLUEMOONTUESDAY.COM
 User Account: shutcherson
+
+Splunk correlation confirmed that this host was one of the top HTTP request generators in the dataset, reinforcing that it was the compromised system (see Top_Hosts_HTTP_Requests.png).
 
 Malicious Sites/C2 IP Addresses
 
