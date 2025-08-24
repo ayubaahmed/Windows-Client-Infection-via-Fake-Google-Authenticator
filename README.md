@@ -96,7 +96,8 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - C2_HTTP_Requests_Overview_5.252.153.241.png  
 - C2_HTTP_Traffic_Summary_5.252.153.241.png  
 - C2_Payload_Request_PowerShell_Script.png  
-- C2_Payload_Download_Attempt_404_Response.png  
+- C2_Payload_Download_Attempt_404_Response.png
+- (./Screenshots/C2_Payload_Download_Attempt_404_Response.png)
 
 ---
 
