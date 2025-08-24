@@ -2,20 +2,20 @@
 
 ---
 
-PCAP Source
+# PCAP Source
 
 This report and analysis are based on the PCAP file provided by Malware-Traffic-Analysis.net:
 
 - Website: [https://www.malware-traffic-analysis.net/2025/01/22/index.html](https://www.malware-traffic-analysis.net/2025/01/22/index.html)
 - PCAP download: [https://www.malware-traffic-analysis.net/2025/01/22/2025-01-22-traffic-analysis-exercise.pcap.zip](https://www.malware-traffic-analysis.net/2025/01/22/2025-01-22-traffic-analysis-exercise.pcap.zip)
 
-Summary
+# Summary
 
 On 22-01-2025, a windows computer was infected by malware, the infection happened after the user searched for "Google Authenticator" and visted a website that was pretending to be legitmate. I retrieved the network traffic and analysed it, coming to a conlusion that the website delivered a malware using an HTTP C2 Sever at 5.252.153.241. This report will detail how the infection was identified, the suspicious activities observed and provide recommendations to contain and remediate the threat. 
 
 ---
 
-Affected Computer Details
+# Affected Computer Details
 
 - IP Address: 10.1.17.215
 - MAC Address: 00:d0:b7:26:4a:74
@@ -25,7 +25,7 @@ User Account: shutcherson
 
 Splunk correlation confirmed that this host was one of the top HTTP request generators in the dataset, reinforcing that it was the compromised system (see Top_Hosts_HTTP_Requests.png).
 
-Malicious Sites/C2 IP Addresses
+# Malicious Sites/C2 IP Addresses
 
 These are the known malicious or suspicious sites/IP addresses involved:
 google-authenticator.burleson-appliance.net – Fake website pretending to be Google Authenticator.
@@ -33,6 +33,8 @@ google-authenticator.burleson-appliance.net – Fake website pretending to be Go
 45.125.66.32 – Suspicious server with traffic on an unusual port (2917).
 45.125.66.252 – suspicious server in the same network range.
 “Due to limited evidence, these last two IP addresses are classed as suspicious and need further monitoring.”
+
+---
 
 
 Investigation Steps and Visual Evidence
