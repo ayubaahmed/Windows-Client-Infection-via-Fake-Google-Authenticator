@@ -42,7 +42,7 @@ Splunk correlation confirmed that this host was one of the most active generator
 
 Due to limited supporting evidence, the last two IPs are considered suspicious rather than confirmed, but they require ongoing monitoring.  
 
-Splunk time-series queries showed these addresses receiving abnormal volumes of traffic from the infected host, suggesting they formed part of the attacker’s infrastructure (see *Suspicious_IP_Communication_Timeline.png*).  
+Splunk time-series queries showed these addresses receiving abnormal volumes of traffic from the infected host, suggesting they formed part of the attacker’s infrastructure ![Suspicious IP Communication Timeline](./Images/Suspicious_IP_Communication_Timeline.png)  .  
 
 ---
 
@@ -55,9 +55,10 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk query (`stats count by ip_src, host | sort -count`) confirmed this same host as one of the most active in HTTP traffic.  
 
 **Screenshots:**  
-- HTTP_Traffic.png  
-- DHCP_Handshake_Process.png  
-- DHCP_Client_Identification_Details.png
+![HTTP Traffic](./Images/HTTP_Traffic.png)  
+![DHCP Handshake Process](./Images/DHCP_Handshake_Process.png)  
+![DHCP Client Identification Details](./Images/DHCP_Client_Identification_Details.png)  
+
 
 ---
 
@@ -66,10 +67,10 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Reviewed Kerberos AS-REP traffic to determine the user account, which was confirmed as **shutcherson**.  
 
 **Screenshots:**  
-- NBNS_Hostname_and_Domain_Registrations.png  
-- Kerberos_Authentication_Traffic_Overview.png  
-- Kerberos_Authentication_User_shutcherson.png  
-- Network_Client_Discovery_DNS_Kerberos_Overview.png  
+[NBNS Hostname and Domain Registrations](./Images/NBNS_Hostname_and_Domain_Registrations.png)   
+![Kerberos Authentication Traffic Overview](./Images/Kerberos_Authentication_Traffic_Overview.png)  
+![Kerberos Authentication User shutcherson](./Images/Kerberos_Authentication_User_shutcherson.png)  
+![Network Client Discovery DNS Kerberos Overview](./Images/Network_Client_Discovery_DNS_Kerberos_Overview.png)  
 
 ---
 
@@ -80,9 +81,9 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk analysis confirmed that shortly after resolving this domain, the host began contacting suspicious IPs, matching the infection timeline.  
 
 **Screenshots:**  
-- DNS_Queries_FakeAuth_and_C2_Resolution.png  
-- DNS_Query_Fake_GoogleAuthenticator_Details.png  
-- Filtered_DNS_GoogleAuth_Query_View.png  
+![DNS Queries FakeAuth and C2 Resolution](./Images/DNS_Queries_FakeAuth_and_C2_Resolution.png)  
+![DNS Query Fake Google Authenticator Details](./Images/DNS_Query_Fake_GoogleAuthenticator_Details.png)  
+![Filtered DNS GoogleAuth Query View](./Images/Filtered_DNS_GoogleAuth_Query_View.png)  
 
 ---
 
@@ -93,11 +94,10 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk confirmed repeated requests for `.ps1` files from this IP. A time chart of HTTP status codes showed a series of 403/404 errors, consistent with C2 behaviour.  
 
 **Screenshots:**  
-- C2_HTTP_Requests_Overview_5.252.153.241.png  
-- C2_HTTP_Traffic_Summary_5.252.153.241.png  
-- C2_Payload_Request_PowerShell_Script.png  
-- C2_Payload_Download_Attempt_404_Response.png
-- ![Secrets](./Images/C2_Payload_Download_Attempt_404_Response.png)
+![C2 HTTP Requests Overview](./Images/C2_HTTP_Requests_Overview_5.252.153.241.png)  
+![C2 HTTP Traffic Summary](./Images/C2_HTTP_Traffic_Summary_5.252.153.241.png)  
+![C2 Payload Request PowerShell Script](./Images/C2_Payload_Request_PowerShell_Script.png)  
+![C2 Payload Download Attempt 404 Response](./Images/C2_Payload_Download_Attempt_404_Response.png)  
 
 ---
 
@@ -107,8 +107,8 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk confirmed spikes of traffic to **45.125.66.32** and **45.125.66.252**, suggesting fallback or secondary C2 infrastructure.  
 
 **Screenshots:**  
-- Network_Conversation_IPv4_Summary.png  
-- IP_Suspicious_Port.png  
+![Network Conversation IPv4 Summary](./Images/Network_Conversation_IPv4_Summary.png)  
+![IP Suspicious Port](./Images/IP_Suspicious_Port.png)  
 
 ---
 
@@ -118,8 +118,8 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk queries showed attempted downloads of `/pas.ps1` and `/TeamViewer`, indicating delivery of both payloads and remote access tools.  
 
 **Screenshots:**  
-- IP_Reputation_45.125.66.32_Detection_Summary.png  
-- IP_Reputation_45.125.66.32_Malicious_Flags.png  
+![IP Reputation 45.125.66.32 Detection Summary](./Images/IP_Reputation_45.125.66.32_Detection_Summary.png)  
+![IP Reputation 45.125.66.32 Malicious Flags](./Images/IP_Reputation_45.125.66.32_Malicious_Flags.png)  
 
 ---
 
