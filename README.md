@@ -29,7 +29,7 @@ By combining packet capture analysis in Wireshark with Splunk SIEM queries, I wa
 - **Domain:** BLUEMOONTUESDAY.COM  
 - **User Account:** shutcherson  
 
-Splunk correlation confirmed that this host was one of the most active generators of HTTP traffic in the dataset, reinforcing that it was the compromised machine (/screenshots *Top_Hosts_HTTP_Requests.png*).  
+Splunk correlation confirmed that this host was one of the most active generators of HTTP traffic in the dataset, reinforcing that it was the compromised machine ![Top Hosts HTTP Requests](./Images/Top_Hosts_HTTP_Requests.png)  .  
 
 ---
 
