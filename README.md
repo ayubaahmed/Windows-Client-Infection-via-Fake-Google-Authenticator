@@ -58,7 +58,7 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - HTTP_Traffic.png  
 - DHCP_Handshake_Process.png  
 - DHCP_Client_Identification_Details.png
-- (./Images/HTTP_Traffic.png  )
+- (/Images/HTTP_Traffic.png  )
 
 ---
 
