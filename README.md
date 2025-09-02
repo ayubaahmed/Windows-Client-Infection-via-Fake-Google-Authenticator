@@ -1,4 +1,4 @@
-# Incident Report: Fake Google Authenticator Malware Infection  
+# Incident Report: Google Authenticator Malware Infection  
 
 ---
 
