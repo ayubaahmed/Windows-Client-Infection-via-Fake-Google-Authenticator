@@ -140,18 +140,16 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 
 - User clicked a malicious link on a fake Google Authenticator website
   - T1566.002 – Phishing: Spearphishing Link (Initial Access)
-HTTP get request sent from host to attacker IP 5.252.153.241
-  → T1071.001 – Application Layer Protocol: Web Protocols (Command & Control)
-DNS query for google-authenticator.burleson-appliance.net
-  → T1568 – Dynamic Resolution (Command & Control / Discovery)
-Repeated HTTP GET requests to the attacker IP
-  → T1071.001 – Web Protocols (Command & Control)
-Attempted download of PowerShell script (pas.ps1)
-  → T1059.001 – Command and Scripting Interpreter: PowerShell (Execution)
-Outbound connection established to suspicious IP 45.125.66.32 over port 2917
-  → T1571 – Non-Standard Port (Command & Control)
-
-  
+- HTTP get request sent from host to attacker IP 5.252.153.241
+  - T1071.001 – Application Layer Protocol: Web Protocols (Command & Control)
+- DNS query for google-authenticator.burleson-appliance.net
+  - T1568 – Dynamic Resolution (Command & Control / Discovery)
+- Repeated HTTP GET requests to the attacker IP
+  - T1071.001 – Web Protocols (Command & Control)
+- Attempted download of PowerShell script (pas.ps1)
+  - T1059.001 – Command and Scripting Interpreter: PowerShell (Execution)
+- Outbound connection established to suspicious IP 45.125.66.32 over port 2917
+  - T1571 – Non-Standard Port (Command & Control)
 
 ---
 
