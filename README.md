@@ -17,7 +17,7 @@ On 22 January 2025, a Windows workstation was infected with malware. The comprom
 
 This report explains how the infection was identified, the suspicious behaviour that followed, and sets out recommendations to contain and remediate the threat.  
 
-By combining packet capture analysis in Wireshark with Splunk SIEM queries, I was able to follow the activity at both the host level and across the wider network. Looking at it from both perspectives confirmed with high confidence that the compromise originated from the fake site and its associated attacker servers.  
+By combining packet capture analysis in Wireshark with Splunk SIEM queries, I was able to follow the activity at both the host level and across the wider network. Looking at it from both perspectives confirmed with confidence that the compromise originated from the fake site and its associated attacker servers.  
 
 ---
 
@@ -41,7 +41,7 @@ Splunk correlation confirmed that this host was one of the most active generator
 - **45.125.66.32** – Suspicious server with traffic over port 2917 (non-standard).  
 - **45.125.66.252** – Another suspicious server within the same address range.  
 
-Due to limited supporting evidence, the last two IPs are considered suspicious rather than confirmed, but they require ongoing monitoring.  
+Due to limited supporting evidence, the last two IPs are considered suspicious rather than confirmed, but they require ongoing analysis.  
 
 Splunk time-series queries showed these addresses receiving abnormal volumes of traffic from the infected host, suggesting they formed part of the attacker’s infrastructure ![Suspicious IP Communication Timeline](./Images/Suspicious_IP_Communication_Timeline.png)  .  
 
@@ -56,10 +56,8 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Splunk query (`stats count by ip_src, host | sort -count`) confirmed this same host as one of the most active in HTTP traffic.  
 
 **Screenshots:**  
-![HTTP Traffic](./Images/HTTP_Traffic.png)  
 ![DHCP Handshake Process](./Images/DHCP_Handshake_Process.png)  
 ![DHCP Client Identification Details](./Images/DHCP_Client_Identification_Details.png) 
-![Initial Compromise](./Images/Initial_Compromise.png)
 
 
 
@@ -73,20 +71,23 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 [NBNS Hostname and Domain Registrations](./Images/NBNS_Hostname_and_Domain_Registrations.png)   
 ![Kerberos Authentication Traffic Overview](./Images/Kerberos_Authentication_Traffic_Overview.png)  
 ![Kerberos Authentication User shutcherson](./Images/Kerberos_Authentication_User_shutcherson.png)  
-![Network Client Discovery DNS Kerberos Overview](./Images/Network_Client_Discovery_DNS_Kerberos_Overview.png)  
+![Network Client Discovery DNS Kerberos Overview](./Images/Network_Client_Discovery_DNS_Kerberos_Overview.png)
+
+
 
 ---
 
 ### 3. DNS Query to Fake Site  
 - Applied HTTP and DNS filters using keywords such as “google” and “auth” to focus on relevant queries.  
 - Observed DNS lookups for **google-authenticator.burleson-appliance.net**.  
-- Established that visiting this domain was the initial infection vector.  
+- Established that visiting this domain was the initial infection vector.
 - Splunk analysis confirmed that shortly after resolving this domain, the host began contacting suspicious IPs, matching the infection timeline.  
 
 **Screenshots:**  
 ![DNS Queries FakeAuth and C2 Resolution](./Images/DNS_Queries_FakeAuth_and_C2_Resolution.png)  
 ![DNS Query Fake Google Authenticator Details](./Images/DNS_Query_Fake_GoogleAuthenticator_Details.png)  
-![Filtered DNS GoogleAuth Query View](./Images/Filtered_DNS_GoogleAuth_Query_View.png)  
+![Filtered DNS GoogleAuth Query View](./Images/Filtered_DNS_GoogleAuth_Query_View.png)
+
 
 ---
 
@@ -101,6 +102,7 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 ![C2 HTTP Traffic Summary](./Images/C2_HTTP_Traffic_Summary_5.252.153.241.png)  
 ![C2 Payload Request PowerShell Script](./Images/C2_Payload_Request_PowerShell_Script.png)  
 ![C2 Payload Download Attempt 404 Response](./Images/C2_Payload_Download_Attempt_404_Response.png)
+![Initial Compromise](./Images/Initial_Compromise.png)
 ![HTTP Requests to the C2 Server](./Images/HTTP_Requests_to_the_C2_Server.png)  
 ![Failed HTTP Requests Over Time](./Images/Failed_HTTP_Requests_Over_Time.png)
 
@@ -110,7 +112,7 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 ### 5. Network Conversation Analysis  
 - Analysed all traffic involving **10.1.17.215**.  
 - Wireshark’s Conversations view highlighted unusual outbound communication over **port 2917**.  
-- Splunk confirmed spikes of traffic to **45.125.66.32** and **45.125.66.252**, suggesting fallback or secondary C2 infrastructure.  
+- Detected elevated outbound traffic to 45.125.66.32 and 45.125.66.252 in Splunk, consistent with secondary command-and-control activity.
 
 **Screenshots:**  
 ![Network Conversation IPv4 Summary](./Images/Network_Conversation_IPv4_Summary.png)  
@@ -122,10 +124,11 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 
 ### 6. Communication with Suspicious IPs  
 - Checked the reputation of the suspicious IPs in VirusTotal and other services.  
-- Both addresses were flagged as malicious by several security vendors.  
-- Splunk queries showed attempted downloads of `/pas.ps1` and `/TeamViewer`, indicating delivery of both payloads and remote access tools.  
+- IP addresses were flagged as malicious by several security vendors.  
+- Splunk queries showed attempted downloads of `/pas.ps1` and `/TeamViewer`, indicating delivery of both payloads and tools.  
 
-**Screenshots:**  
+**Screenshots:**
+![IP Reputation 5.252.153.241 Detection Summary](./Images/IP_Reputation_5.252.153.241_Detection_Summary.png)  
 ![IP Reputation 45.125.66.32 Detection Summary](./Images/IP_Reputation_45.125.66.32_Detection_Summary.png)  
 ![IP Reputation 45.125.66.32 Malicious Flags](./Images/IP_Reputation_45.125.66.32_Malicious_Flags.png)  
 ![Hosts Downloading PowerShell or Script Files](./Images/Hosts_Downloading_PowerShell_or_Script_Files.png)
@@ -133,14 +136,22 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 
 ---
 
-## Timeline of Events  
+## Mapped attack chain
 
-- **19:45:56** – First HTTP request from host **10.1.17.215** to **5.252.153.241**.  
-- **19:47** – DNS query for **google-authenticator.burleson-appliance.net**.  
-- **19:48** – HTTP GET requests sent to **5.252.153.241**.  
-- **19:50** – Attempted PowerShell script download (`/pas.ps1`), server responded with 404.  
-- **20:05** – Outbound communication to suspicious IP **45.125.66.32** over port 2917.  
-- **20:10 onwards** – Continued traffic to **45.125.66.32** and **45.125.66.252**, indicating fallback C2 activity.  
+- User clicked a malicious link on a fake Google Authenticator website
+  → T1566.002 – Phishing: Spearphishing Link (Initial Access)
+HTTP get request sent from host to attacker IP 5.252.153.241
+  → T1071.001 – Application Layer Protocol: Web Protocols (Command & Control)
+DNS query for google-authenticator.burleson-appliance.net
+  → T1568 – Dynamic Resolution (Command & Control / Discovery)
+Repeated HTTP GET requests to the attacker IP
+  → T1071.001 – Web Protocols (Command & Control)
+Attempted download of PowerShell script (pas.ps1)
+  → T1059.001 – Command and Scripting Interpreter: PowerShell (Execution)
+Outbound connection established to suspicious IP 45.125.66.32 over port 2917
+  → T1571 – Non-Standard Port (Command & Control)
+
+  
 
 ---
 
@@ -152,15 +163,15 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 - Traffic was observed on a non-standard outbound port (2917).  
 - IP reputation checks confirmed the addresses were flagged as malicious.  
 
-By reviewing both Wireshark and Splunk data, it was possible to reconstruct the events in detail and confirm that the infection stemmed from the fake website and the attacker’s infrastructure.  
+By reviewing both Wireshark and Splunk data, it was possible to reconstruct the events and confirm that the infection stemmed from the fake website and the attacker’s infrastructure.  
 
 ---
 
 ## Recommendations  
 
-- Isolate and reimage the affected workstation.  
-- Block the malicious domain and IP addresses at the firewall and proxy.
-- Reset the password for the account **shutcherson**.
-- Restrict PowerShell use to administrators only, reducing the chance of script-based attacks.
-- Inspect other hosts and accounts for lateral movement or related activity.  
-- Implement user awareness training to reduce the risk of future compromise.  
+- Take the infected computer offline and reinstall it from scratch to make sure no malware remains.
+- Stop access to the fake website and suspicious IP addresses so no one else in the network can connect to them.
+- Change the password for the affected user account (shutcherson) to prevent attackers using it again.
+- Limit PowerShell to IT admins only, so everyday users can’t accidentally run harmful scripts.
+- Check other computers and user accounts to make sure the attackers haven’t spread elsewhere.
+- Provide staff training on phishing and safe browsing, so they’re less likely to fall for similar attacks in future.
