@@ -139,7 +139,7 @@ Splunk time-series queries showed these addresses receiving abnormal volumes of 
 ## Mapped attack chain
 
 - User clicked a malicious link on a fake Google Authenticator website
-  → T1566.002 – Phishing: Spearphishing Link (Initial Access)
+  - T1566.002 – Phishing: Spearphishing Link (Initial Access)
 HTTP get request sent from host to attacker IP 5.252.153.241
   → T1071.001 – Application Layer Protocol: Web Protocols (Command & Control)
 DNS query for google-authenticator.burleson-appliance.net
